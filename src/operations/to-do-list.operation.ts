@@ -11,6 +11,9 @@ export class ToDoListOperation implements BaseOperation<any, Promise<any>>
     ) {}
 
     async execute(filters: ConsultRequest): Promise<any> {
+        if(filters?.finish)
+            filters.finish === 'true' ? true : false
+
         return await this.toDoListService.all(filters)
     }
 

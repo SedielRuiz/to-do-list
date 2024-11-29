@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsNotEmpty, IsOptional } from 'class-validator'
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator'
 
 export class ConsultRequest {
 
@@ -9,16 +9,16 @@ export class ConsultRequest {
         example: 'Code review'
     })
     @IsOptional()
-    description: string
+    @IsString()
+    description?: string
 
     @ApiProperty({
-        type: Boolean,
+        type: String,
         description: 'finish',
-        example: true
+        example: 'true'
     })
     @IsOptional()
-    @IsBoolean()
-    finish: boolean
+    finish?: any
 
 }
 
