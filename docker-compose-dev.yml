@@ -1,0 +1,23 @@
+version: "1.0.0"
+services:
+    to-do-list:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3015:3015"
+        links:
+            - to-do-list-postgres
+        volumes:
+            - .:/home/app
+    to-do-list-postgres: 
+        image: postgres:16.2
+        ports:
+            - "5433:5432"
+        environment:
+            - POSTGRES_PASSWORD=123456789
+            - POSTGRES_DB=to_do_list
+        volumes:
+            - to-do-list:/var/lib/postgresql/data
+volumes:
+    to-do-list: 
